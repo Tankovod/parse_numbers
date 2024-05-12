@@ -7,24 +7,8 @@ from src.utils.parser import Parser
 from .router import router
 from src.models import User, Number
 from src.tasks import task_user_send
-from src.keyboards.reply.keyboard1 import rkm_1, rkm_2
 from src.keyboards.inline.k1 import create_k
 from src.keyboards.inline.k1 import MyCallbackData
-
-
-@router.message(F.text == '/b')
-async def keyboards(message: Message):
-    await message.answer(text='.', reply_markup=rkm_1)
-
-
-@router.message(F.text == 'Town')
-async def keyboards(message: Message):
-    await message.answer(text='123', reply_markup=rkm_2)
-
-
-@router.message(F.text == 'village')
-async def keyboards(message: Message):
-    await message.answer(text='123', reply_markup=await create_k())
 
 
 @router.message(F.text == '/start')
