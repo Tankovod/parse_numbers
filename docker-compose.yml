@@ -5,7 +5,7 @@ services:
   bot:
     build: .
     command: sh -c "alembic revision --autogenerate && alembic upgrade head && python bot.py"
-    container_name: bot
+    container_name: bot-nums
     volumes:
       - .:/bot
     environment:
@@ -29,12 +29,12 @@ services:
 
   redis:
     image: redis:7.0.11-alpine3.18
-    container_name: redis-bot
+    container_name: redis-nums-bot
 
   celery-worker:
     build: .
     command: celery -A src.settings:celery worker -l INFO
-    container_name: celery-worker
+    container_name: celery-nums-worker
     volumes:
       - .:/bot
     environment:
@@ -51,7 +51,7 @@ services:
   celery-beat:
     build: .
     command: celery -A src.settings:celery beat -l INFO
-    container_name: celery-beat
+    container_name: celery-nums-beat
     volumes:
       - .:/bot
     environment:
