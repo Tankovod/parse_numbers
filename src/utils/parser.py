@@ -40,7 +40,6 @@ class Parser:
                     soup = BeautifulSoup(response_text, 'lxml')
 
                     links = soup.find_all(attrs={'class': 'listing-item__link'})
-                    print(links)
                     return [link['href'].split('/')[-1] for link in links]
 
     @classmethod
@@ -51,7 +50,7 @@ class Parser:
             for i in ids:
                 url1 = f'/offers/{i}/phones'
                 async with session.get(
-                    url=url1
+                    url=url1,
                 ) as response:
                     if response.status == HTTPStatus.OK:
                         data = await response.json()
