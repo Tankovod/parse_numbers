@@ -37,6 +37,6 @@ celery.autodiscover_tasks(packages=['src'])
 celery.conf.beat_schedule = {
     'parser': {
         'task': 'src.tasks.task_parser',
-        'schedule': 15.0
+        'schedule': 700.0
     }
 }
